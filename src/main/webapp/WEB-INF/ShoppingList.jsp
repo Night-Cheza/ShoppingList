@@ -12,15 +12,16 @@
 	<body>
 		<h1>Shopping List</h1>
 
-		<h5>Hello ${userName}.</h5>
-		<a href ="login?logout">Log out</a>
+		<p>Hello, ${userName}. <a href ="login?logout">Log out</a></p>
 		
 		<h2>List</h2>
 		
-		<form>
+		<form action="ShoppingList" method="post">
+			<input type="hidden" name="action" value="add">
+			
 			<label for="addItem">Add Item:</label>
 			<input type="text" name=""addItem" id=""addItem">
-			<button type="submit">Add</button>
+			<button type="submit" action=""add">Add</button>
 		</form>
 		
 		<form>
@@ -28,7 +29,7 @@
 				<input type="radio" name=""item" value="apples">
 				Apples
 			</p>
-			<button type="submit">Delete</button>		
+			<button type="submit" action="delete">Delete</button>		
 		</form>
 	</body>
 </html>

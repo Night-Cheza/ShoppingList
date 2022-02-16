@@ -11,10 +11,10 @@
 		
 		<h3>Shopping List</h3>
 
-		<form>
+		<form action="ShoppingList" method="post">
 			<label for=" userName">Username:</label>
 			<input type="text" name="userName" id="userName">
-			<button type="submit">Register Name</button>
+			<button type="submit" action="register">Register Name</button>
 		</form>
 	</body>
 </html>
