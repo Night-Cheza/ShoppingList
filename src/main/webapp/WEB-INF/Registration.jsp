@@ -12,9 +12,12 @@
 		<h3>Shopping List</h3>
 
 		<form action="ShoppingList" method="post">
+			<input type="hidden" name="action" value="register">
+			
 			<label for=" userName">Username:</label>
 			<input type="text" name="userName" id="userName">
-			<button type="submit" action="register">Register Name</button>
+			
+			<button type="submit">Register Name</button>
 		</form>
 	</body>
 </html>

@@ -31,9 +31,6 @@ public class ShoppingListServlet extends HttpServlet {
 		} else {
 			getServletContext().getRequestDispatcher("/WEB-INF/ShoppingList.jsp").forward(request, response);
 		}
-
-		
-//		
 	}
 
 	/**
@@ -46,28 +43,34 @@ public class ShoppingListServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action =request.getParameter("action");
 		HttpSession session = request.getSession();
 
+		String action =request.getParameter("action");
+
+		ArrayList<String> items = new ArrayList<>();
+		
 		if(action != null && action.equals("add")) {
-			String item = request.getParameter("addItem");
+			String item = request.getParameter("item");
 
-			ArrayList<String> items	= (ArrayList<String>) session.getAttribute("addItems");
+			items	= (ArrayList<String>) session.getAttribute("items");			
 			items.add(item);
-			session.setAttribute("addItem", items);
-			//check if arraylist exists, if not - create one
-//			if( items.isEmpty()) {  
-//				session.setAttribute("addItem", item);
-//			}
 
-		} else {
-			String userName = request.getParameter("userName");
+			session.setAttribute("items", items);
+		} else
+			if(action != null && action.equals("delete")) {
+				String item = request.getParameter("item");
 
-			ArrayList<String> items = new ArrayList<>();
-			
-			session.setAttribute("userName", userName);
-			session.setAttribute("addItem", items);			
-		}
+				items	= (ArrayList<String>) session.getAttribute("items");			
+				items.remove(item);
+
+				session.setAttribute("items", items);
+			} else {
+				String userName = request.getParameter("userName");
+
+				session.setAttribute("userName", userName);			
+				session.setAttribute("items", items);
+			}
+
 		getServletContext().getRequestDispatcher("/WEB-INF/ShoppingList.jsp").forward(request, response);
 
 	}

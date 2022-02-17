@@ -1,6 +1,4 @@
-<%-- 
-    Author: Leila Nalivkina, Nick Hemnett
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,17 +17,22 @@
 		<form action="ShoppingList" method="post">
 			<input type="hidden" name="action" value="add">
 			
-			<label for="addItem">Add Item:</label>
-			<input type="text" name=""addItem" id=""addItem">
-			<button type="submit" action=""add">Add</button>
+			<label for="item">Add Item:</label>
+			<input type="text" name="item" id="item">
+			<button type="submit">Add</button>
 		</form>
 		
-		<form>
-			<p>
-				<input type="radio" name=""item" value="apples">
-				Apples
-			</p>
-			<button type="submit" action="delete">Delete</button>		
+		<form action="ShoppingList" method="post">
+			<input type="hidden" name="action" value="delete">
+			
+			<c:forEach items="${items}" var="item">
+				<p>
+					<input type="radio" name="item" value="${item}">
+					${item}
+				</p>
+			</c:forEach>
+
+			<button type="submit">Delete</button>		
 		</form>
 	</body>
 </html>
