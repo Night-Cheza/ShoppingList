@@ -10,7 +10,9 @@
 	<body>
 		<h1>Shopping List</h1>
 
-		<p>Hello, ${userName}. <a href ="login?logout">Log out</a></p>
+		<p>
+			Hello, ${userName}. <a href ="ShoppingList?logout">Logout</a>
+		</p>
 		
 		<h2>List</h2>
 		

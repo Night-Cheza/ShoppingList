@@ -25,12 +25,17 @@ public class ShoppingListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userName = (String)session.getAttribute("userName");
+		String query = request.getQueryString();
 
 		if(userName == null) {
 			getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
-		} else {
-			getServletContext().getRequestDispatcher("/WEB-INF/ShoppingList.jsp").forward(request, response);
-		}
+		} else
+			if(query != null && query.equals("logout")) {
+				session.invalidate();
+				getServletContext().getRequestDispatcher("/WEB-INF/Registration.jsp").forward(request, response);
+			} else {
+				getServletContext().getRequestDispatcher("/WEB-INF/ShoppingList.jsp").forward(request, response);
+			}
 	}
 
 	/**
